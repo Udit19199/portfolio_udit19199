@@ -1,0 +1,66 @@
+export const metadata = {
+  title: 'My Side Project Started Planning For Me',
+  description:
+    'How Aurora evolved from a boring todo app into an AI-powered planning system.',
+  authors: [{ name: 'Udit Agarwal', url: 'https://uditagarwal.me' }],
+  openGraph: {
+    images: [
+      'https://cdn.example.com/aurora-og.jpg', // swap in your real OG image later
+    ],
+  },
+}
+
+<Cover
+  src="https://cdn.cosmos.so/affd4b79-e848-4dfd-bd42-5f2c4a847365?format=jpeg"
+  alt="Image from the movie Alien - from cosmos.com"
+  caption="cosmos.com"
+/>
+
+
+# My Side Project Started Planning For Me
+
+I'll be honest: this didn't start out as some "grand AI project."
+It started as me building a boring todo app because every React tutorial told me to.
+And… it sucked.
+Then it hit me: everyone is obsessed with AI.
+I was already pestering ChatGPT for study roadmaps ("teach me DSA in 30 days"). I realized the real value wasn't the list of topics, but the structured plan it was giving me. That was the missing piece.
+What if my todo app could generate the plan for you?
+That's how Aurora was born: a planner app with an actual brain.
+
+## Why Bother?
+
+Because the world doesn't need another todo clone.
+I wanted something useful (for me and maybe others).
+AI isn't just a gimmick here - it's the main character.
+Also, let's be real: "I built an AI-powered planner" sounds way cooler than "I built a todo list in React."
+
+## How I Set It Up (and Broke Things Along the Way)
+
+Not a tutorial, just the landmines I stepped on:
+
+Monorepo (pnpm) → Thought it'd be neat to keep frontend, backend, and shared logic together. Cue `node_modules` chaos.  
+Pro tip: pnpm filter can use folder path _or_ package name - and which one you pick matters.
+
+Database (Postgres) → Wanted persistence. Installing locally was pain.  
+On Mac? Homebrew will troll you. Docker is your friend.
+
+API Layer (Express/Nest) → Easy setup… until CORS showed up.  
+If your frontend refuses to talk to your backend, it's probably CORS laughing at you.
+
+AI Engine (Chronos) → The fun part. Chronos is the planning engine I built that actually generates the plans. Its job is to take a goal and get GPT to output an actual, actionable plan instead of random word soup.  
+Prompt engineering = 30% creativity, 70% "why is this so cursed?
+
+## What I Learned
+
+Tutorials make it look easy - it isn't.
+Every bug = one more piece of the stack I actually understand.
+Aurora isn't just a side project anymore - it's my messy notes, my failed attempts, and my playground for learning.
+
+✨ Aurora: not just another todo app, but a planner that _actually plans for you._
+
+## See It in Action & Follow Along
+
+Aurora is a living project. You can check out the live demo, dive into the (admittedly messy) code, or follow my journey as I keep building and breaking things.
+
+LinkedIn: uditagarwal19199  
+Medium: udit-19199
