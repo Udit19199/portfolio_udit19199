@@ -25,7 +25,7 @@ export type MorphingDialogContextType = {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   uniqueId: string
-  triggerRef: React.RefObject<HTMLDivElement>
+  triggerRef: React.RefObject<HTMLButtonElement>
 }
 
 const MorphingDialogContext =
@@ -52,7 +52,7 @@ function MorphingDialogProvider({
 }: MorphingDialogProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const uniqueId = useId()
-  const triggerRef = useRef<HTMLDivElement>(null!)
+  const triggerRef = useRef<HTMLButtonElement>(null!)
 
   const contextValue = useMemo(
     () => ({
@@ -88,7 +88,7 @@ export type MorphingDialogTriggerProps = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
-  triggerRef?: React.RefObject<HTMLDivElement>
+  triggerRef?: React.RefObject<HTMLButtonElement>
 }
 
 function MorphingDialogTrigger({
@@ -103,32 +103,21 @@ function MorphingDialogTrigger({
     setIsOpen(!isOpen)
   }, [isOpen, setIsOpen])
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault()
-        setIsOpen(!isOpen)
-      }
-    },
-    [isOpen, setIsOpen],
-  )
-
   return (
-    <motion.div
+    <motion.button
       ref={triggerRef}
       layoutId={`dialog-${uniqueId}`}
       className={cn('relative cursor-pointer', className)}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
       style={style}
-      role="button"
+      type="button"
       aria-haspopup="dialog"
       aria-expanded={isOpen}
       aria-controls={`motion-ui-morphing-dialog-content-${uniqueId}`}
       aria-label={`Open dialog ${uniqueId}`}
     >
       {children}
-    </motion.div>
+    </motion.button>
   )
 }
 
@@ -277,6 +266,7 @@ function MorphingDialogTitle({
       className={className}
       style={style}
       layout
+      id={`motion-ui-morphing-dialog-title-${uniqueId}`}
     >
       {children}
     </motion.div>
@@ -339,7 +329,7 @@ function MorphingDialogDescription({
       initial="initial"
       animate="animate"
       exit="exit"
-      id={`dialog-description-${uniqueId}`}
+      id={`motion-ui-morphing-dialog-description-${uniqueId}`}
     >
       {children}
     </motion.div>

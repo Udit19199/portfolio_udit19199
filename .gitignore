@@ -9,6 +9,7 @@ GEMINI.md
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+.npmrc # User-specific npm config
 
 # testing
 /coverage
@@ -23,6 +24,7 @@ GEMINI.md
 # misc
 .DS_Store
 *.pem
+*.log # General log files
 
 # debug
 npm-debug.log*
@@ -39,3 +41,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and Editor files
+.vscode/
+.idea/
+

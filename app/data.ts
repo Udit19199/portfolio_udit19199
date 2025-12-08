@@ -73,14 +73,6 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = []
 
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    title: 'My Side Project Started Planning For Me',
-    description: 'How AI is changing the way we design',
-    link: '/blog/my-side-project-started-planning-for-me',
-    uid: 'blog-1',
-  },
-]
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
