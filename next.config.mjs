@@ -1,13 +1,22 @@
-import createMDX from '@next/mdx'
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  turbopack: {},
+  pageExtensions: ['md', 'mdx', 'ts', 'tsx', 'js', 'jsx'],
+  experimental: {
+    mdxRs: true, // built-in Rust MDX compiler for Turbopack
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.cosmos.so',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 }
 
-const withMDX = createMDX({
-  extension: /\.mdx?$/,
-})
+export default nextConfig
 
-export default withMDX(nextConfig)

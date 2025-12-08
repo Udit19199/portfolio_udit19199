@@ -1,9 +1,12 @@
+import { LucideSignalZero } from "lucide-react"
+
 type Project = {
   name: string
   description: string
   link: string
-  video: string
+  video?: string
   id: string
+  tags: string[]
 }
 
 type WorkExperience = {
@@ -27,7 +30,46 @@ type SocialLink = {
   link: string
 }
 
-export const PROJECTS: Project[] = []
+export const SKILLS: string[] = [
+  'TypeScript',
+  'React',
+  'Next.js',
+  'Tailwind CSS',
+  'Python',
+  'Pygame',
+  'AI/LLMs',
+]
+
+export const PROJECTS: Project[] = [
+  {
+    name: "Zoro",
+    description: "An autonomous AI coding agent that helps developers scaffold, iterate, and debug projects directly from natural language instructions.",
+    link: "https://github.com/Udit19199/zoro",
+    id: "project_1",
+    tags: ["AI", "Coding Agent", "LLM"]
+  },
+  {
+    name: "Asteroids",
+    description: "A modern take on the classic arcade shooter, built with Python and Pygame, featuring smooth controls and dynamic asteroid physics.",
+    link: "https://github.com/Udit19199/Asteroids",
+    id: "project_2",
+    tags: ["Python", "Pygame", "Game Dev"]
+  },
+  {
+    name: "Aurora",
+    description: "An AI-driven productivity system that transforms tasks into smart, adaptive schedules with automated planning and prioritization.",
+    link: "https://github.com/Udit19199/aurora",
+    id: "project_3",
+    tags: ["AI", "Planner", "Productivity"]
+  },
+  {
+    name: "Pokedex",
+    description: "A feature-rich Pokédex built with TypeScript, delivering detailed Pokémon stats, visuals, and fast search powered by modern web tooling.",
+    link: "https://github.com/Udit19199/pokedex",
+    id: "project_4",
+    tags: ["TypeScript", "API", "Frontend"]
+  }
+]
 
 export const WORK_EXPERIENCE: WorkExperience[] = []
 
