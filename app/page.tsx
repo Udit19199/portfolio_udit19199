@@ -11,7 +11,7 @@ export default function Page() {
   const blogPosts = getSortedPostsData()
 
   return (
-    <FadeInStagger className="space-y-12">
+    <FadeInStagger className="space-y-24">
       <HeroSection />
       <SkillsSection />
       <ProjectsSection />

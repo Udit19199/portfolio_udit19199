@@ -32,12 +32,15 @@ type SocialLink = {
 
 export const SKILLS: string[] = [
   'TypeScript',
-  'React',
-  'Next.js',
-  'Tailwind CSS',
+  'Javascript',
   'Python',
   'Pygame',
   'AI/LLMs',
+  'C++',
+  'NodeJS',
+  'PostgreSQL',
+  'MongoDB'
+
 ]
 
 export const PROJECTS: Project[] = [
@@ -88,9 +91,13 @@ export const SOCIAL_LINKS: SocialLink[] = [
     link: 'https://www.linkedin.com/in/uditagarwal19199/',
   },
   {
+    label: 'Medium',
+    link: 'https://medium.com/@udit-19199',
+  },
+  {
     label: 'Instagram',
     link: 'https://www.instagram.com/udit19199',
   },
 ]
 
-export const EMAIL = 'udit19199@gmail.com'
+export const EMAIL = 'hello@uditagarwal.me'

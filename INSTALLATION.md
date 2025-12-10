@@ -31,7 +31,7 @@
    Update the template data in the `app/data.ts` file.
 
    ```ts
-   export const EMAIL = 'udit19199@gmail.com'
+   export const EMAIL = 'hello@uditagarwal.me'
 
    export const SOCIAL_LINKS = [
      {

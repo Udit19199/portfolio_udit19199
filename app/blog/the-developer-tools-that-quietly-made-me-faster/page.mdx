@@ -1,0 +1,201 @@
+export const metadata = {
+  title: 'The Developer Tools That Quietly Made Me Faster (and a Little More Dangerous)',
+  description: 'How Neovim, tmux, and zsh quietly supercharged my workflow.',
+}
+
+import { Cover } from '@/components/cover'
+
+# The Developer Tools That Quietly Made Me Faster (and a Little More Dangerous)
+
+I didn't adopt these tools because a productivity YouTuber said so.
+I adopted them because I was tired of fighting my own computer.
+
+While building Aurora, my AI planner side project, I realized the real bottleneck wasn't code—it was context switching. Too many windows, tabs, terminals, and browser distractions pretending to be "workflow."
+
+So I went back to basics: one editor, one terminal, zero nonsense.
+
+## How It Started
+
+I first heard about Vim and tmux through ThePrimeagen—loud, chaotic, but right. Then I found 2 YouTube channels, **typecraft** and **Dreams of Code**, both of which helped me navigate and setup these tools and proper config.
+
+I didn't overhaul my setup overnight. Each new tool solved a real irritation. By the time I was done, my machine finally felt like it worked for me.
+
+## Neovim — Because Editors Shouldn't Babysit You
+
+VS Code is great if you enjoy mouse choreography. I don't.
+
+Neovim strips away the handholding. It gives you rope, and you can either tie knots or hang yourself. That's the appeal.
+
+My setup runs off **Kickstart** with a few personal tweaks. No status bars screaming for attention. No plugins that blink for dopamine. Just keystrokes and results.
+
+Once it clicks, you stop thinking about "editing." You start thinking about flow.
+
+## tmux — Persistence Is a Superpower
+
+Every crash used to nuke my progress. Reopen this, rerun that. Waste.
+
+**tmux** killed that ritual.
+
+Now I spin up one session with three panes—editor, server logs, database shell—and that environment stays alive no matter what happens.
+
+The best part isn't the convenience. It's the mindset. tmux trains you to think in sessions, not moments. Real systems recover. So should your workflow.
+
+## zsh — Bash, but Actually Evolved
+
+Bash works fine, the same way a rotary phone still works.
+
+**zsh** adds everything Bash should've had twenty years ago: autosuggestions, history that behaves like memory, completions that don't feel like punishment.
+
+My `.zshrc` isn't a shrine—it's a system. XDG paths, Zinit for plugins, sane defaults. No hacks. No mystery lag.
+
+## zsh Stack — fzf, zoxide, zinit, and Friends
+
+This combo is the difference between using the terminal and commanding it.
+
+*   **fzf** finds anything, anywhere.
+*   **zoxide** makes `cd` feel telepathic.
+*   **zinit** manages plugins without turning startup into molasses.
+
+Together, they make Finder, Spotlight, and every GUI launcher feel like antiques.
+I don't click. I jump.
+
+## A Setup That Feels Engineered
+
+Here's the rule: if it breaks, fix it properly. Don't duct-tape aliases.
+
+My config isn't fancy—it's disciplined. Clean paths, fast startup, predictable behavior.
+<div className="bg-zinc-100 dark:bg-zinc-900/80 p-4 rounded-md border border-zinc-200 dark:border-zinc-800">
+  <div className="text-zinc-700 dark:text-zinc-300">
+    The goal isn't to have a perfect `.zshrc`; it's to treat it like code you evolve, not a lucky charm you copy from Reddit.
+  </div>
+</div>
+
+For the curious, here's my zsh setup.
+
+```bash
+# =============================================================================
+# EDITORS AND PATHS
+# =============================================================================
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+# XDG Base Directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+export HF_HUB_ENABLE_HF_TRANSFER=1
+
+# =============================================================================
+# ZINIT (Plugin Manager)
+# =============================================================================
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+ mkdir -p "$(dirname "$ZINIT_HOME")"
+ git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit snippet OMZP::command-not-found
+
+# =============================================================================
+# COMPLETION
+# =============================================================================
+mkdir -p "$HOME/.zsh/completions" "$HOME/.zsh/cache"
+fpath=("$HOME/.zsh/completions" $fpath)
+
+autoload -Uz compinit
+if [[ -n "$HOME/.zsh/cache/.zcompdump"(#qN.m-24) ]]; then
+  compinit -i -C -d "$HOME/.zsh/cache/.zcompdump"
+else
+  compinit -i -d "$HOME/.zsh/cache/.zcompdump"
+fi
+
+# Replay previous zinit state
+zinit cdreplay -q
+
+# Completion styles
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors  "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# =============================================================================
+# HISTORY
+# =============================================================================
+HISTSIZE=5000
+HISTFILE="$HOME/.zsh_history"
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+setopt appendhistory sharehistory
+setopt hist_ignore_space hist_ignore_all_dups hist_save_no_dups
+setopt hist_find_no_dups hist_ignore_dups
+
+# =============================================================================
+# KEYBINDINGS
+# =============================================================================
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# =============================================================================
+# TOOLS INITIALIZATION
+# =============================================================================
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Starship prompt
+eval "$(starship init zsh)"
+
+# =============================================================================
+# ALIASES
+# =============================================================================
+alias vconf='nvim ~/.config/nvim/'
+alias zconf='nvim ~/.zshrc'
+alias code='cd ~/Code'
+alias dsa='cd ~/Code/dsa'
+alias dev='cd ~/Code/dev'
+alias reload='source ~/.zshrc'
+alias ls='eza --icons --group-directories-first'
+alias cat='bat'
+alias grep='rg'
+
+# =============================================================================
+# PNPM
+# =============================================================================
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+```
+
+It's small on purpose. Everything else lives in modular files under `~/.config`.
+
+This setup boots instantly, feels predictable, and doesn't demand babysitting.
+The tools serve me—not the other way around.
+
+## What I Learned
+
+Good tools don't make you "productive." They make you unapologetically focused.
+You start noticing how much time you used to waste switching windows, how often you confused motion with progress.
+
+Now, my terminal is quiet.
+My editor starts instantly.
+And I build faster because there's nothing left to fight.
+
+## Closing Thought
+
+Speed isn't the point. Clarity is.
+Get your tools out of the way, and the work reveals itself.
