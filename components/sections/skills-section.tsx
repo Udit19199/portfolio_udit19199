@@ -7,7 +7,7 @@ import { SKILLS } from '@/app/data'
 export function SkillsSection() {
   return (
     <FadeIn>
-      <h3 className="mb-5 text-lg font-medium">Skills</h3>
+
       <div className="flex flex-wrap gap-x-2 gap-y-4">
         {SKILLS.map((skill) => (
           <Magnetic key={skill} springOptions={{ bounce: 0 }}>

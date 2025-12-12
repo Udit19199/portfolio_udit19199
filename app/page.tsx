@@ -1,7 +1,6 @@
 import { getSortedPostsData } from '@/lib/blog'
 import { FadeInStagger } from '@/components/fade-in'
 import { HeroSection } from '@/components/sections/hero-section'
-import { SkillsSection } from '@/components/sections/skills-section'
 import { ProjectsSection } from '@/components/sections/projects-section'
 import { ExperienceSection } from '@/components/sections/experience-section'
 import { BlogSection } from '@/components/sections/blog-section'
@@ -13,7 +12,6 @@ export default function Page() {
   return (
     <FadeInStagger className="space-y-24">
       <HeroSection />
-      <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
       <BlogSection posts={blogPosts} />
