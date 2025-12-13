@@ -28,6 +28,7 @@ export function ProjectVideo({ src }: ProjectVideoProps) {
           autoPlay
           loop
           muted
+          playsInline
           className="aspect-video w-full cursor-zoom-in rounded-xl"
         />
       </MorphingDialogTrigger>
@@ -38,6 +39,7 @@ export function ProjectVideo({ src }: ProjectVideoProps) {
             autoPlay
             loop
             muted
+            playsInline
             className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
           />
         </MorphingDialogContent>

@@ -10,12 +10,14 @@ export default function Page() {
   const blogPosts = getSortedPostsData()
 
   return (
-    <FadeInStagger className="space-y-24">
+    <>
       <HeroSection />
-      <ProjectsSection />
-      <ExperienceSection />
-      <BlogSection posts={blogPosts} />
-      <ConnectSection />
-    </FadeInStagger>
+      <FadeInStagger className="space-y-24">
+        <ProjectsSection />
+        <ExperienceSection />
+        <BlogSection posts={blogPosts} />
+        <ConnectSection />
+      </FadeInStagger>
+    </>
   )
 }

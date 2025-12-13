@@ -6,9 +6,9 @@ export function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
       <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
+        <span className="font-medium">
           Udit Agarwal
-        </Link>
+        </span>
         <TextEffect
           as="p"
           preset="fade"
