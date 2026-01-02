@@ -1,1 +1,1 @@
-export const WEBSITE_URL = 'https://uditagarwal.com'
+export const WEBSITE_URL = 'https://uditagarwal.me'
