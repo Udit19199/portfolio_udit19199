@@ -19,15 +19,22 @@ export function ProjectsSection() {
                 </div>
               )}
               <div>
-                <a
-                  className="font-base group relative mb-3 inline-block font-[450] text-white"
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-white transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
+                <div className="mb-3 flex items-center gap-2">
+                  <a
+                    className="font-base group relative inline-block font-[450] text-white"
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-white transition-all duration-200 group-hover:max-w-full"></span>
+                  </a>
+                  {project.wip && (
+                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-500 border border-amber-500/20">
+                      WIP
+                    </span>
+                  )}
+                </div>
                 <p className="text-base text-white/80 leading-relaxed">
                   {project.description}
                 </p>
