@@ -80,7 +80,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/uditagarwal19199/',
+    link: 'https://www.linkedin.com/in/udit19199/',
   },
   {
     label: 'Medium',
